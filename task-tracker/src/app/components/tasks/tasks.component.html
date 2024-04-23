@@ -1,0 +1,63 @@
+<div class="tasks-container">
+  <div class="task-toolbar">
+    <div class="filter-controls">
+      <mat-form-field class="form-field">
+        <mat-label>Исполнитель</mat-label>
+        <input matInput (input)="applyFilter($event, 'assignee')" placeholder="Имя исполнителя">
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Статус</mat-label>
+        <input matInput (input)="applyFilter($event, 'status')" placeholder="Статус">
+      </mat-form-field>
+    </div>
+
+    <button mat-fab color="primary" class="add-task-button" (click)="navigateToCreateTask()">+</button>
+  </div>
+
+
+  <table mat-table [dataSource]="dataSource" matSort class="full-width-table">
+
+
+
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Заголовок</th>
+      <td mat-cell *matCellDef="let row">{{ row.title }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="priority">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Приоритет</th>
+      <td mat-cell *matCellDef="let row">
+        <span [ngClass]="getPriorityClass(row.priority)">
+          {{ row.priority }}
+        </span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Статус</th>
+      <td mat-cell *matCellDef="let row">{{ row.status }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="deadline">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Дедлайн</th>
+      <td mat-cell *matCellDef="let row">{{ row.deadline | date }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="assignees">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Исполнители</th>
+      <td mat-cell *matCellDef="let row">{{ row.assignees.join(', ') }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Действия</th>
+      <td mat-cell *matCellDef="let row">
+        <a mat-button [routerLink]="['/edit', row.id]">Редактировать</a>
+        <button mat-button (click)="deleteTask(row.id)">Удалить</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

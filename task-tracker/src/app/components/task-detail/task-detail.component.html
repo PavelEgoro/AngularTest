@@ -1,0 +1,12 @@
+<div class="task-detail-container" *ngIf="task">
+  <h2>{{ task.title }}</h2>
+  <p><strong>Описание:</strong> {{ task.description }}</p>
+  <p><strong>Дедлайн:</strong> {{ task.deadline | date }}</p>
+  <p><strong>Приоритет:</strong> {{ task.priority }}</p>
+  <p><strong>Статус:</strong> {{ task.status }}</p>
+  <p><strong>Исполнители:</strong> {{ task.assignees.join(', ') }}</p>
+  <div>
+    <a mat-button color="primary" [routerLink]="['/edit', task.id]">Редактировать</a>
+    <a mat-button [routerLink]="'/tasks'">Вернуться к списку</a>
+  </div>
+</div>
