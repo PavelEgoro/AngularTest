@@ -1,0 +1,53 @@
+<div class="page-container">
+
+  <div class="task-edit-container">
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Заголовок</mat-label>
+        <input matInput formControlName="title" placeholder="Введите заголовок задачи">
+        <mat-error *ngIf="taskForm.get('title')?.invalid">Заголовок обязателен.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Описание</mat-label>
+        <textarea matInput formControlName="description" placeholder="Введите описание задачи"></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Дедлайн</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="deadline">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Приоритет</mat-label>
+        <mat-select formControlName="priority">
+          <mat-option *ngFor="let priority of priorities" [value]="priority">
+            {{ priority }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Статус</mat-label>
+        <mat-select formControlName="status">
+          <mat-option *ngFor="let status of statuses" [value]="status">
+            {{ status }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Исполнители (через запятую)</mat-label>
+        <input matInput formControlName="assignees" placeholder="Например, user1, user2">
+      </mat-form-field>
+
+      <div class="action-buttons">
+        <button mat-raised-button color="primary" type="submit" [disabled]="taskForm.invalid">Сохранить</button>
+        <a mat-stroked-button [routerLink]="['/tasks']">Отмена</a>
+      </div>
+    </form>
+  </div>
+</div>
+  
