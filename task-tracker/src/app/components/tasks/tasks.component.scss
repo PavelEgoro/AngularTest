@@ -1,0 +1,51 @@
+.tasks-container {
+  .task-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px;
+
+    .filter-controls {
+      display: flex;
+      gap: 10px;
+
+      .form-field {
+        width: 150px;
+        height: 70px;
+
+        mat-form-field {
+          width: 100%;
+        }
+      }
+    }
+
+    .add-task-button {
+      margin-top: -20px;
+      margin-left: 20px;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      min-width: 40px;
+    }
+  }
+}
+
+.priority-high,
+.priority-medium,
+.priority-low {
+  padding: 3px 6px;
+  border-radius: 4px;
+  color: white;
+}
+
+.priority-high {
+  background-color: red;
+}
+
+.priority-medium {
+  background-color: orange;
+}
+
+.priority-low {
+  background-color: green;
+}

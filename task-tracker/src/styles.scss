@@ -1,4 +1,20 @@
-/* You can add global styles to this file, and also import other style files */
+.background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: url('https://kartinki.pics/pics/uploads/posts/2022-08/thumbs/1661319991_1-kartinkin-net-p-zadnii-fon-dlya-programmi-krasivo-1.jpg') no-repeat center center;
+  background-size: cover;
+  overflow: hidden;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.router-container {
+  position: relative;
+  z-index: 1;
+}
+
+.header {
+  border-radius: 20px;
+}
